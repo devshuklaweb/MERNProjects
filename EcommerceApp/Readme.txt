@@ -4,3 +4,4 @@ Install Packages:
     -> npm i express
     -> npm i mongoose
     -> npm i nodemon
+    -> npm install create-react-app frontend
