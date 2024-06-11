@@ -26,7 +26,10 @@ const Navbar = () => {
                                 auth ? 
                                     <Link className={`nav-link`} onClick={Logout}>Logout</Link> 
                                 : 
+                                    <>
+                                    <Link className={`nav-link`} aria-current="page" to="/login">Login</Link>
                                     <Link className={`nav-link`} aria-current="page" to="/signup">SignUp</Link>
+                                    </>
                             }
                             
                             

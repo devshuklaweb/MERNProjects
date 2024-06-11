@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Footer from './components/Footer';
 import PrivateComponent from './components/PrivateComponent';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route exact path="/addProduct" element={<h1>Add Product</h1>}></Route>
             <Route exact path="/listProduct" element={<h1>List Product</h1>}></Route>
           </Route>
+          <Route exact path="/login" element={<Login/>}></Route>
           <Route exact path="/signup" element={<Signup/>}></Route>
         </Routes>
       </BrowserRouter>
