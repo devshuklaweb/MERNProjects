@@ -1,10 +1,25 @@
 import React,{useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 const Signup = () => {
     const [name,setName] = useState("Geniusitsolution");
     const [email,setEmail] = useState("dev@geniusitsolution.in");
     const [password,setPassword] = useState("dev@genius");
-    const register = () => {
-        console.warn(name,email,password);
+    const navigate = useNavigate();
+    const register = async () => {
+        const data = await fetch("http://localhost:5000/register",{
+            headers: {
+                'Content-Type':'application/json'
+            },
+            method:'post',
+            body:JSON.stringify({name,email,password})
+        });
+        let result = await data.json();
+        if(result) {
+            localStorage.setItem("user",JSON.stringify(result));
+            navigate("/");
+        } else {
+            console.log(result,"API Result");
+        }
     }
     return (
         <>
