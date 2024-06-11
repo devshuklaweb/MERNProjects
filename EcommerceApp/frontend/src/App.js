@@ -11,8 +11,8 @@ function App() {
       <BrowserRouter>
         <Navbars />
         <Routes>
-          <Route element={<PrivateComponent/>}>
-            <Route exact path="/" element={<Home />}></Route>
+          <Route exact path="/" element={<Home />}></Route>
+          <Route element={<PrivateComponent/>}>  
             <Route exact path="/addProduct" element={<h1>Add Product</h1>}></Route>
             <Route exact path="/listProduct" element={<h1>List Product</h1>}></Route>
           </Route>

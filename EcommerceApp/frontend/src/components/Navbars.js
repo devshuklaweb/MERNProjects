@@ -1,8 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const auth = localStorage.getItem("user");
+    const Logout = () => {
+        localStorage.clear();
+        navigate("/");
+    }
     return (
         <>
             <nav className="navbar fixed-top navbar-expand-lg  navbar-dark bg-dark">
@@ -18,7 +23,10 @@ const Navbar = () => {
                             <Link className={`nav-link`} aria-current="page" to="/addProduct">Add Products</Link>
                             <Link className={`nav-link`} aria-current="page" to="/">Profile</Link>
                             {
-                                auth ? <Link className={`nav-link`} aria-current="page" to="/">Logout</Link> : <Link className={`nav-link`} aria-current="page" to="/signup">SignUp</Link>
+                                auth ? 
+                                    <Link className={`nav-link`} onClick={Logout}>Logout</Link> 
+                                : 
+                                    <Link className={`nav-link`} aria-current="page" to="/signup">SignUp</Link>
                             }
                             
                             
