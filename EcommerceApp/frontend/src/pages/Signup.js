@@ -1,10 +1,18 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 const Signup = () => {
     const [name,setName] = useState("Geniusitsolution");
     const [email,setEmail] = useState("dev@geniusitsolution.in");
     const [password,setPassword] = useState("dev@genius");
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        const auth = localStorage.getItem("user");
+        if(auth) {
+            navigate("/");
+        }
+    }) 
+
     const register = async () => {
         const data = await fetch("http://localhost:5000/register",{
             headers: {

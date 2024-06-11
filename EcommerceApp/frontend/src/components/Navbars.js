@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
+    const auth = localStorage.getItem("user");
     return (
         <>
             <nav className="navbar fixed-top navbar-expand-lg  navbar-dark bg-dark">
@@ -13,11 +14,14 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <Link className={`nav-link active`} aria-current="page" to="/">Home</Link>
-                            <Link className={`nav-link`} aria-current="page" to="/">Products List</Link>
-                            <Link className={`nav-link`} aria-current="page" to="/">Add Products</Link>
+                            <Link className={`nav-link`} aria-current="page" to="/listProduct">Products List</Link>
+                            <Link className={`nav-link`} aria-current="page" to="/addProduct">Add Products</Link>
                             <Link className={`nav-link`} aria-current="page" to="/">Profile</Link>
-                            <Link className={`nav-link`} aria-current="page" to="/signup">SignUp</Link>
-                            <Link className={`nav-link`} aria-current="page" to="/">Logout</Link>
+                            {
+                                auth ? <Link className={`nav-link`} aria-current="page" to="/">Logout</Link> : <Link className={`nav-link`} aria-current="page" to="/signup">SignUp</Link>
+                            }
+                            
+                            
                         </ul>
                     </div>
                 </div>

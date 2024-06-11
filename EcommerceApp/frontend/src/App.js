@@ -3,6 +3,7 @@ import Navbars from './components/Navbars';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Footer from './components/Footer';
+import PrivateComponent from './components/PrivateComponent';
 
 function App() {
   return (
@@ -10,7 +11,11 @@ function App() {
       <BrowserRouter>
         <Navbars />
         <Routes>
-          <Route exact path="/" element={<Home />}></Route>
+          <Route element={<PrivateComponent/>}>
+            <Route exact path="/" element={<Home />}></Route>
+            <Route exact path="/addProduct" element={<h1>Add Product</h1>}></Route>
+            <Route exact path="/listProduct" element={<h1>List Product</h1>}></Route>
+          </Route>
           <Route exact path="/signup" element={<Signup/>}></Route>
         </Routes>
       </BrowserRouter>
