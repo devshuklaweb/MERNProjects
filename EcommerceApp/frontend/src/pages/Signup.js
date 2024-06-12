@@ -38,13 +38,13 @@ const Signup = () => {
                         <div className="mb-3 row">
                             <label htmlFor="name" className="col-sm-2 col-form-label">Name</label>
                             <div className="col-sm-10">
-                                <input type="text" onChange={(e)=>setName(e.target.value)} className="form-control-plaintext" id="name" name="name" placeholder="Geniusitsolution" defaultValue={name} />
+                                <input type="text" onChange={(e)=>setName(e.target.value)} className="form-control" id="name" name="name" placeholder="Geniusitsolution" defaultValue={name} />
                             </div>
                         </div>
                         <div className="mb-3 row">
                             <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
                             <div className="col-sm-10">
-                                <input type="text" onChange={(e)=>setEmail(e.target.value)} className="form-control-plaintext" id="email" name="email" placeholder="dev@geniusitsolution.in" defaultValue={email} />
+                                <input type="text" onChange={(e)=>setEmail(e.target.value)} className="form-control" id="email" name="email" placeholder="dev@geniusitsolution.in" defaultValue={email} />
                             </div>
                         </div>
                         <div className="mb-3 row">

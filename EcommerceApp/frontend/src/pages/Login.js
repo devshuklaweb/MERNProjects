@@ -40,7 +40,7 @@ const Login = () => {
                         <div className="mb-3 row">
                             <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
                             <div className="col-sm-10">
-                                <input type="text" onChange={(e) => setEmail(e.target.value)} className="form-control-plaintext" id="email" name="email" placeholder="dev@geniusitsolution.in" defaultValue={email} />
+                                <input type="text" onChange={(e) => setEmail(e.target.value)} className="form-control" id="email" name="email" placeholder="dev@geniusitsolution.in" defaultValue={email} />
                             </div>
                         </div>
                         <div className="mb-3 row">
