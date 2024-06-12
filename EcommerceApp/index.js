@@ -3,6 +3,7 @@ require("./db/config")
 const app = express();
 const port = 5000
 const User = require("./Models/User");
+const Product = require("./Models/Product");
 app.use(express.json());
 
 //resolve cors issue
@@ -33,6 +34,26 @@ app.post('/login', async (req, resp) => {
     } else {
         resp.send({result:'No user found'});
     }
+})
+/////////////////////////////////////////////// Product API
+app.post('/add-product', async (req, resp) => {
+    let product = new Product(req.body);
+    let result = await product.save();
+    resp.send(result);
+})
+
+app.get('/list-product', async (req, resp) => {
+    let product = await Product.find();
+    if(product.length > 0) {
+        resp.send(product);
+    } else {
+        resp.send({result:'No product found!'})
+    }
+})
+
+app.delete('/del-product/:id', async (req, resp) => {
+    let result = await Product.deleteOne({_id:req.params.id});
+    resp.send(result);
 })
 
 app.listen(port, () => {
