@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link,useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
     const navigate = useNavigate();
     const auth = localStorage.getItem("user");
     const Logout = () => {
         localStorage.clear();
-        navigate("/");
+        navigate("/login");
     }
     return (
         <>
@@ -18,21 +18,25 @@ const Navbar = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <Link className={`nav-link active`} aria-current="page" to="/">Home</Link>
-                            <Link className={`nav-link`} aria-current="page" to="/listProduct">Products List</Link>
-                            <Link className={`nav-link`} aria-current="page" to="/addProduct">Add Products</Link>
-                            <Link className={`nav-link`} aria-current="page" to="/">Profile</Link>
                             {
-                                auth ? 
-                                    <Link className={`nav-link`} onClick={Logout}>Logout</Link> 
-                                : 
+                                auth ?
                                     <>
-                                    <Link className={`nav-link`} aria-current="page" to="/login">Login</Link>
-                                    <Link className={`nav-link`} aria-current="page" to="/signup">SignUp</Link>
+                                        <li class="nav-item"><Link className={`nav-link active`} aria-current="page" to="/">Home</Link></li>
+                                        <li class="nav-item"><Link className={`nav-link`} aria-current="page" to="/listProduct">Products List</Link></li>
+                                        <li class="nav-item"><Link className={`nav-link`} aria-current="page" to="/addProduct">Add Products</Link></li>
+                                        <li class="nav-item"><Link className={`nav-link`} aria-current="page" to="/">Profile</Link></li>
+                                        <li class="nav-item"><Link className={`nav-link`} onClick={Logout}>Logout ({JSON.parse(auth).name})</Link></li>
+                                    </>
+                                    :
+                                    <>
+                                        <li class="nav-item">
+                                            <Link className={`nav-link`} aria-current="page" to="/login">Login</Link>
+                                        </li>
+                                        <li class="nav-item">
+                                            <Link className={`nav-link`} aria-current="page" to="/signup">SignUp</Link>
+                                        </li>
                                     </>
                             }
-                            
-                            
                         </ul>
                     </div>
                 </div>
