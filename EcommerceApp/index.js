@@ -47,12 +47,32 @@ app.get('/list-product', async (req, resp) => {
     if(product.length > 0) {
         resp.send(product);
     } else {
-        resp.send({result:'No product found!'})
+        resp.send({result:'No record found!'})
+    }
+})
+
+app.get('/get-product/:id', async (req, resp) => {
+    let product = await Product.findOne({_id:req.params.id});
+    console.log(product.length);
+    if(product) {
+        resp.send(product);
+    } else {
+        resp.send({result:'No record found!'})
     }
 })
 
 app.delete('/del-product/:id', async (req, resp) => {
     let result = await Product.deleteOne({_id:req.params.id});
+    resp.send(result);
+})
+
+app.put('/update-product/:id', async (req, resp) => {
+    let result = await Product.updateOne(
+        {_id: req.params.id},
+        {
+            "$set":req.body
+        }
+    );
     resp.send(result);
 })
 
