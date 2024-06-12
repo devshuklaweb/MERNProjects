@@ -5,6 +5,9 @@ const port = 5000
 const User = require("./Models/User");
 const Product = require("./Models/Product");
 app.use(express.json());
+//jwt authentication
+const JWT = require('jsonwebtoken');
+const jwtkey = "JayShriRaam";
 
 //resolve cors issue
 const cors = require("cors");
@@ -17,16 +20,38 @@ app.get('/', async (req, resp) => {
 });
 
 app.post('/register', async (req, resp) => {
-    let user = new User(req.body);
-    let result = await user.save();
-    resp.send({ _id: result._id, name: result.name, email: result.email });
+    let data = new User(req.body);
+    let result = await data.save();
+    //jwt code
+    JWT.sign({ data }, jwtkey, { expiresIn: "2h" }, (error, token) => {
+        if (error) {
+            resp.send({ result: 'something went wrong. Please try again.' });
+        } else {
+            let user = {
+                _id: result._id, 
+                name: result.name, 
+                email: result.email
+            }
+            resp.send({user,auth:token});
+
+}
+    })
+    //jwt code end
 });
 
 app.post('/login', async (req, resp) => {
     if (req.body.email && req.body.password) {
         let user = await User.findOne(req.body).select("-password");//-password se ye column result se hata dega
         if (user) {
-            resp.send(user);
+            //jwt code
+            JWT.sign({ user }, jwtkey, { expiresIn: "2h" }, (error, token) => {
+                if (error) {
+                    resp.send({ result: 'something went wrong. Please try again.' });
+                } else {
+                    resp.send({ user, auth: token });
+                }
+            })
+            //jwt code end
         } else {
             resp.send({ result: 'No user found' });
         }

@@ -23,7 +23,8 @@ const Signup = () => {
         });
         let result = await data.json();
         if (result) {
-            localStorage.setItem("user", JSON.stringify(result));
+            localStorage.setItem("user", JSON.stringify(result.user));
+            localStorage.setItem("token",JSON.stringify(result.auth));
             navigate("/");
         } else {
             console.log(result, "API Result");

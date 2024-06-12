@@ -21,8 +21,10 @@ const Login = () => {
             body:JSON.stringify({email,password})
         });
         let result = await data.json();
-        if(result.email) {
-            localStorage.setItem("user",JSON.stringify(result));
+        if(result.user) {
+            //auth token
+            localStorage.setItem("user",JSON.stringify(result.user));
+            localStorage.setItem("token",JSON.stringify(result.auth));
             navigate("/");
         } else {
             alert("Email or password not valid");
