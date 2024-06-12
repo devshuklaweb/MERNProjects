@@ -8,7 +8,22 @@ app.use(express.json());
 //jwt authentication
 const JWT = require('jsonwebtoken');
 const jwtkey = "JayShriRaam";
-
+//middleware for verifytokens
+function verifyJWTToken(req, resp, next) {
+    let token = req.headers['authorization'];
+    if (token) {
+        token = token.split(' ')[1];
+        JWT.verify(token, jwtkey, (error, valid) => {
+            if (error) {
+                resp.status(401).send({ result: 'Please enter valid token' });
+            } else {
+                next();
+            }
+        })
+    } else {
+        resp.status(403).send({ result: 'Please add token with header' });
+    }
+}
 //resolve cors issue
 const cors = require("cors");
 app.use(cors());
@@ -28,13 +43,13 @@ app.post('/register', async (req, resp) => {
             resp.send({ result: 'something went wrong. Please try again.' });
         } else {
             let user = {
-                _id: result._id, 
-                name: result.name, 
+                _id: result._id,
+                name: result.name,
                 email: result.email
             }
-            resp.send({user,auth:token});
+            resp.send({ user, auth: token });
 
-}
+        }
     })
     //jwt code end
 });
@@ -86,12 +101,12 @@ app.get('/get-product/:id', async (req, resp) => {
     }
 });
 
-app.delete('/del-product/:id', async (req, resp) => {
+app.delete('/del-product/:id', verifyJWTToken, async (req, resp) => {
     let result = await Product.deleteOne({ _id: req.params.id });
     resp.send(result);
 });
 
-app.put('/update-product/:id', async (req, resp) => {
+app.put('/update-product/:id',verifyJWTToken, async (req, resp) => {
     let result = await Product.updateOne(
         { _id: req.params.id },
         {
@@ -101,7 +116,7 @@ app.put('/update-product/:id', async (req, resp) => {
     resp.send(result);
 });
 
-app.get('/search-product/:key', async (req, resp) => {
+app.get('/search-product/:key', verifyJWTToken, async (req, resp) => {
     let product = await Product.find({
         "$or": [
             { name: { $regex: req.params.key } },
@@ -112,6 +127,7 @@ app.get('/search-product/:key', async (req, resp) => {
     });
     resp.send(product);
 });
+
 
 app.listen(port, () => {
     console.log(`EcommerceApp listening on port http://localhost:${port}`)
