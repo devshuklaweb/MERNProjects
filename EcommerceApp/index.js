@@ -76,7 +76,7 @@ app.post('/login', async (req, resp) => {
 });
 
 /////////////////////////////////////////////// Product API
-app.post('/add-product', async (req, resp) => {
+app.post('/add-product',verifyJWTToken, async (req, resp) => {
     let product = new Product(req.body);
     let result = await product.save();
     resp.send(result);
@@ -91,7 +91,7 @@ app.get('/list-product', async (req, resp) => {
     }
 })
 
-app.get('/get-product/:id', async (req, resp) => {
+app.get('/get-product/:id',verifyJWTToken, async (req, resp) => {
     let product = await Product.findOne({ _id: req.params.id });
     console.log(product.length);
     if (product) {

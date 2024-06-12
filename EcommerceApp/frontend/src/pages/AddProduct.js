@@ -17,7 +17,8 @@ const AddProduct = () => {
         const userId = JSON.parse(localStorage.getItem('user'));
         const data = await fetch("http://localhost:5000/add-product",{
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                authorization:"Bearer "+JSON.parse(localStorage.getItem("token")),
             },
             method:'post',
             body:JSON.stringify({name,price,category,company,userid:userId._id})
