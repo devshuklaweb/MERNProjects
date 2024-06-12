@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ListProduct = () => {
     const [products, setProducts] = useState([]);
+    const [search,setSearch] = useState("");
 
     useEffect(() => {
         getProducts();
@@ -27,11 +28,29 @@ const ListProduct = () => {
         }
     }
 
+    const handleSearch = async (event) => {
+        let key = event.target.value;
+        if(key) {
+            const data = await fetch(`http://localhost:5000/search-product/${key}`,{
+                method:'get'
+            });
+            let result = await data.json();
+            if(result) {
+                setProducts(result);
+            }
+        } else {
+            getProducts();
+        }
+    }
+
     return (
         <>
             <div className="container">
                 <div className="sectionbody text-center" style={{ marginTop: '60px' }}>
                     <h2><u>List Product</u></h2>
+                    <div className='row d-flex justify-content-center'>
+                    <input type="text" onChange={handleSearch} className="form-control" id="search" name="search" defaultValue={search} placeholder="Search by name,category,company" style={{width:'55%'}}/>
+                    </div>
                     <table className="table table-striped table-hover">
                         <thead>
                             <tr>
@@ -45,20 +64,24 @@ const ListProduct = () => {
                         </thead>
                         <tbody>
                             {
-                                products.map((item,index) => 
-                                <tr key={item._id}>
-                                    <th scope="row">{index+1}</th>
-                                    <td>{item.name}</td>
-                                    <td>{item.price}</td>
-                                    <td>{item.category}</td>
-                                    <td>{item.company}</td>
-                                    <td>
-                                    <Link className={`btn btn-sm btn-success`} to={`/updateProduct/${item._id}`}>Edit</Link>
-                                    &nbsp;
-                                    <button className="btn btn-sm btn-warning" onClick={()=>handleDelete(item._id)}>Delete</button>
-                                    </td>
-                                </tr>
+                                products.length > 0 ? products.map((item,index) => 
+                                    <tr key={item._id}>
+                                        <th scope="row">{index+1}</th>
+                                        <td>{item.name}</td>
+                                        <td>{item.price}</td>
+                                        <td>{item.category}</td>
+                                        <td>{item.company}</td>
+                                        <td>
+                                        <Link className={`btn btn-sm btn-success`} to={`/updateProduct/${item._id}`}>Edit</Link>
+                                        &nbsp;
+                                        <button className="btn btn-sm btn-warning" onClick={()=>handleDelete(item._id)}>Delete</button>
+                                        </td>
+                                    </tr>
                                 )
+                                :
+                                <tr>
+                                    <td colSpan={6}><h4>No Result found!</h4></td>
+                                </tr>
                             }
                         </tbody>
                     </table>
