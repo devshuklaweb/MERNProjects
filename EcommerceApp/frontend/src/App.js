@@ -15,17 +15,17 @@ function App() {
       <BrowserRouter>
         <Navbars />
         <Routes>
-          <Route exact path="/" element={<Home />}></Route>
-          <Route element={<PrivateComponent/>}>  
-            <Route exact path="/addProduct" element={<AddProduct/>}></Route>
-            <Route exact path="/listProduct" element={<ListProduct/>}></Route>
-            <Route exact path="/updateProduct/:id" element={<UpdateProduct/>}></Route>
+          <Route element={<PrivateComponent />}>
+            <Route exact path="/" element={<Home />}></Route>
+            <Route exact path="/addProduct" element={<AddProduct />}></Route>
+            <Route exact path="/listProduct" element={<ListProduct />}></Route>
+            <Route exact path="/updateProduct/:id" element={<UpdateProduct />}></Route>
           </Route>
-          <Route exact path="/login" element={<Login/>}></Route>
-          <Route exact path="/signup" element={<Signup/>}></Route>
+          <Route exact path="/login" element={<Login />}></Route>
+          <Route exact path="/signup" element={<Signup />}></Route>
         </Routes>
       </BrowserRouter>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
