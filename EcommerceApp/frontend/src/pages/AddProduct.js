@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const AddProduct = () => {
     const navigate = useNavigate();
 
@@ -36,8 +36,11 @@ const AddProduct = () => {
         <>
             <div className="container">
                 <div className="sectionbody text-center" style={{ marginTop: '60px' }}>
-                    <h2><u>Add Product</u></h2>
-                    <form>
+                    <h2>
+                        <u>Add Product</u>
+                        <Link style={{float:'right',marginTop:'8px'}} className={`btn btn-primary text-end`} to="/listProduct">List Product</Link>
+                    </h2>
+                    <form style={{paddingTop:'15px'}}>
                         <div className="mb-3 row">
                             <label htmlFor="name" className="col-sm-2 col-form-label">Name</label>
                             <div className="col-sm-10">

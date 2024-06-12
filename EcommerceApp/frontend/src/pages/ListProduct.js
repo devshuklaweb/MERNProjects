@@ -47,13 +47,16 @@ const ListProduct = () => {
         <>
             <div className="container">
                 <div className="sectionbody text-center" style={{ marginTop: '60px' }}>
-                    <h2><u>List Product</u></h2>
-                    <div className='row d-flex justify-content-center'>
-                    <input type="text" onChange={handleSearch} className="form-control" id="search" name="search" defaultValue={search} placeholder="Search by name,category,company" style={{width:'55%'}}/>
+                    <h2>
+                        <u>List Product</u>
+                        <Link style={{float:'right',marginTop:'8px'}} className={`btn btn-primary text-end`} to="/addProduct">Add Product</Link>
+                    </h2>
+                    <div className='row d-flex justify-content-center' style={{marginTop:'12px',marginBottom:'15px'}}>
+                        <input type="text" onChange={handleSearch} className="form-control" id="search" name="search" defaultValue={search} placeholder="Search by name,category,company,price" style={{width:'55%'}}/>
                     </div>
                     <table className="table table-striped table-hover">
                         <thead>
-                            <tr>
+                            <tr style={{borderTop:'1px solid #d4d4d4'}}>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Price</th>

@@ -81,6 +81,7 @@ app.get('/search-product/:key', async (req, resp) => {
         "$or": [
             { name: { $regex: req.params.key } },
             { company: { $regex: req.params.key } },
+            { price: { $regex: req.params.key } },
             { category: { $regex: req.params.key } }
         ]
     });
