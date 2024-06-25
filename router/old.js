@@ -2,7 +2,7 @@
 
 
 
-const User = require("./Models/User");
+
 const Product = require("./Models/Product");
 
 //jwt authentication

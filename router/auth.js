@@ -11,10 +11,16 @@ router.post('/register', [
     body("name",'Enter a valid name').isLength({ min: 5 }),
     body("email",'Enter a valid email').isEmail(),
     body("password",'Enter a valid password').isLength({ min: 5 }).withMessage('Min length is 5 chars'),
-], (req, resp) => { //url: /api/auth/register
+], async (req, resp) => { //url: /api/auth/register
+    //return errors when any validation true
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return resp.status(400).json({error:errors.array()});
+    }
+    //checking usre already exist or not
+    let checkUser = await User.findOne({email:req.body.email});
+    if(checkUser) {
+        return resp.status(400).json({error:"Sorry a user with this email already exist"});
     }
     User.create({
         name:req.body.name,
