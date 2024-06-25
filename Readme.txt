@@ -9,6 +9,7 @@ Install Packages:
     -> npm i cors
     -> npm i jsonwebtoken
     -> npm i express-validator // for api validation
+    -> npm i bcryptjs // hashing password
     -> create-react-app frontend //create react frontend folder
     -> frontend: 
         -> npm i react-router-dom
