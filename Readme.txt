@@ -1,4 +1,4 @@
-EcommerceApp app using node.js/express and mongodb
+iNotebook app using node.js/express and mongodb
 -------------------------------------------------------------------------------------------
 Install Packages:
 -------------------------------------------------------------------------------------------
