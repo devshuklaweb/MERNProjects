@@ -3,6 +3,7 @@ const User = require("../Models/User");
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
+const fetchuser = require("../middleware/fetchuser");
 //jwt authentication
 const JWT = require('jsonwebtoken');
 const jwtkey = "JayShriRaam";
@@ -38,9 +39,9 @@ router.post('/register', [
             email: req.body.email
         });
         let data = {
-           user:{
-            id: user._id
-           }
+            user: {
+                id: user._id
+            }
         }
         //jwt code
         JWT.sign({ data }, jwtkey, { expiresIn: "2h" }, (error, token) => {
@@ -51,7 +52,7 @@ router.post('/register', [
                     _id: user._id,
                     name: user.name,
                     email: user.email,
-                    authtoken:token
+                    authtoken: token
                 }
                 resp.status(200).json(obj);
             }
@@ -85,30 +86,47 @@ router.post('/register', [
 router.post('/login', [
     body("email", 'Enter a valid email').isEmail(),
     body("password", 'Password can not be blank').exists(),
-], async (req, resp) => { 
+], async (req, resp) => {
     //return errors when any validation true
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return resp.status(400).json({ error: errors.array() });
     }
     try {
-        const {email,password} = req.body;
-        console.log(email,password);
+        const { email, password } = req.body;
+        console.log(email, password);
         let selUser = await User.findOne({ email });
         if (!selUser) {
             return resp.status(400).json({ error: "Email address is not valid." });
         }
-        const compairPassword = await bcrypt.compare(password,selUser.password);
-        if(!compairPassword) {
+        const compairPassword = await bcrypt.compare(password, selUser.password);
+        if (!compairPassword) {
             return resp.status(400).json({ error: "Password not valid. Please enter a correct password." });
         }
         let data = {
-            user:{
-             id: selUser._id
+            user: {
+                id: selUser._id
             }
         }
-        const authtoken = JWT.sign(data,jwtkey);
-        resp.send({authtoken});
+        const authtoken = JWT.sign(data, jwtkey);
+        resp.send({ authtoken });
+    } catch (error) {
+        return resp.status(401).json({ error: 'Internal server error', message: error.message })
+    }
+});
+
+//url: http://localhost:5000/api/auth/getuser 
+//using auth-token getting user detail using middleware
+router.post('/getUser', fetchuser, async (req, resp) => {
+    //return errors when any validation true
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return resp.status(400).json({ error: errors.array() });
+    }
+    try {
+        userId = req.user.id;
+        const user = await User.findById(userId).select("-password");//-password se ye column result se hata dega
+        resp.status(200).send(user);
     } catch (error) {
         return resp.status(401).json({ error: 'Internal server error', message: error.message })
     }
