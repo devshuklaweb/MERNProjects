@@ -6,7 +6,7 @@ app.use(express.json());
 
 // available routes
 app.use('/api/auth/',require("./router/auth"));
-//app.use('/api/notes/',require("./router/notes"));
+app.use('/api/notes/',require("./router/notes"));
 
 app.listen(port, () => {
     console.log(`EcommerceApp listening on port http://localhost:${port}`)
