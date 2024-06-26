@@ -91,7 +91,6 @@ router.post('/login', [
     if (!errors.isEmpty()) {
         return resp.status(400).json({ error: errors.array() });
     }
-    
     try {
         const {email,password} = req.body;
         console.log(email,password);
@@ -110,13 +109,6 @@ router.post('/login', [
         }
         const authtoken = JWT.sign(data,jwtkey);
         resp.send({authtoken});
-
-        //way-1 for try and catch
-        // let user = await User.create({
-        //     name: req.body.name,
-        //     email: secPassword,
-        //     password: req.body.password
-        // });
     } catch (error) {
         return resp.status(401).json({ error: 'Internal server error', message: error.message })
     }
