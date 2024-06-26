@@ -37,4 +37,35 @@ router.post('/addnote', fetchuser, [
     }
 });
 
+//Route to update notes
+//Url: /api/notes/updatenote
+router.put('/updatenote/:id', fetchuser, async (req, resp) => {
+    const {title,description,tag} = req.body;
+    const newNote = {};
+    if(title) {
+        newNote.title = title;
+    }
+    if(description) {
+        newNote.description = description;
+    }
+    if(tag) {
+        newNote.tag = tag;
+    }
+    try {
+        //check note id is valid or not
+        const note = await Notes.findById(req.params.id); 
+        if(!note) {
+            return resp.status(404).json({error:'Note id not found!'});
+        }
+        // check updated note is login user user note or not
+        if(note.user.toString() != req.user.id) {
+            return resp.status(401).json({error:'You not able to update this note.'});
+        }
+        result = await Notes.findByIdAndUpdate(req.params.id,{$set:newNote},{new:true});
+        resp.status(200).json(result);
+    } catch (error) {
+        return resp.status(500).json({ error: 'Internal server error', message: error.message })
+    }
+});
+
 module.exports = router;
