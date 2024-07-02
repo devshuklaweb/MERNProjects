@@ -1,5 +1,6 @@
 const express = require('express')
 const User = require("../Models/User");
+const TUser = require("../Models/TUser");
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
@@ -11,6 +12,45 @@ const jwtkey = "JayShriRaam";
 router.get('/', (req, resp) => { //url: /api/auth/
     resp.send("iNotbook api");
 });
+
+//react toolkit test
+router.post('/createuser', [
+    body("name", 'Enter a valid name').isLength({ min: 5 }),
+    body("email", 'Enter a valid email').isEmail(),
+    body("gender", 'Enter a valid email').exists(),
+    body("age", 'Enter a valid age').exists(),
+], async (req, resp) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return resp.status(400).json({ error: errors.array() });
+    }
+    let checkUser = await TUser.findOne({ email: req.body.email });
+    if (checkUser) {
+        return resp.status(400).json({ error: "Sorry a user with this email already exist" });
+    }
+    try {
+        let user = await TUser.create({
+            name: req.body.gender,
+            gender: req.body.gender,
+            age: req.body.age,
+            email: req.body.email
+        });
+        resp.status(200).json(user);
+    } catch (error) {
+        return resp.status(401).json({ error: 'Please enter a unique email address', message: error.message })
+    }
+});
+
+router.post('/getAllUser', async (req, resp) => {
+    //return errors when any validation true
+    try {
+        const user = await User.find({});
+        resp.status(200).send(user);
+    } catch (error) {
+        return resp.status(401).json({ error: 'Internal server error', message: error.message })
+    }
+});
+
 
 router.post('/register', [
     body("name", 'Enter a valid name').isLength({ min: 5 }),
@@ -94,7 +134,6 @@ router.post('/login', [
     }
     try {
         const { email, password } = req.body;
-        console.log(email, password);
         let selUser = await User.findOne({ email });
         if (!selUser) {
             return resp.status(400).json({ error: "Email address is not valid." });
@@ -108,8 +147,9 @@ router.post('/login', [
                 id: selUser._id
             }
         }
+        delete selUser.password;
         const authtoken = JWT.sign(data, jwtkey);
-        resp.send({ authtoken });
+        resp.send({ user:selUser,authtoken });
     } catch (error) {
         return resp.status(401).json({ error: 'Internal server error', message: error.message })
     }

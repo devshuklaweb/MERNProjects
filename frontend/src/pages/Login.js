@@ -1,8 +1,8 @@
 import React,{useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 const Login = () => {
-    const [email,setEmail] = useState("dev@geniusitsolution.in");
-    const [password,setPassword] = useState("dev@genius");
+    const [email,setEmail] = useState("dev3@gmail.com");
+    const [password,setPassword] = useState("dev@1234");
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -13,7 +13,7 @@ const Login = () => {
     }) 
     
     const handleLogin = async () => {
-        const data = await fetch("http://localhost:5000/login",{
+        const data = await fetch("http://localhost:5000/api/auth/login",{
             headers: {
                 'Content-Type':'application/json'
             },
@@ -28,8 +28,8 @@ const Login = () => {
             navigate("/");
         } else {
             alert("Email or password not valid");
-            setEmail("dev@geniusitsolution.in");
-            setPassword("dev@genius");
+            setEmail("dev3@gmail.com");
+            setPassword("dev@1234");
         }
     }
 
@@ -43,7 +43,7 @@ const Login = () => {
                             <div className="mb-3 row">
                                 <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
                                 <div className="col-sm-10">
-                                    <input type="text" onChange={(e) => setEmail(e.target.value)} className="form-control" id="email" name="email" placeholder="dev@geniusitsolution.in" defaultValue={email} />
+                                    <input type="text" onChange={(e) => setEmail(e.target.value)} className="form-control" id="email" name="email" placeholder="dev3@gmail.com" defaultValue={email} />
                                 </div>
                             </div>
                             <div className="mb-3 row">

@@ -8,6 +8,9 @@ import Login from './pages/Login';
 import AddProduct from './pages/AddProduct';
 import ListProduct from './pages/ListProduct';
 import UpdateProduct from './pages/UpdateProduct';
+import Create from './pages/Create';
+import Read from './pages/Read';
+import Edit from './pages/Edit';
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
         <Routes>
           <Route element={<PrivateComponent />}>
             <Route exact path="/" element={<Home />}></Route>
+            <Route exact path="/createuser" element={<Create />}></Route>
+            <Route exact path="/readuser" element={<Read/>} />
+            <Route exact path="/edit/:id" element={<Edit />} />
             <Route exact path="/addProduct" element={<AddProduct />}></Route>
             <Route exact path="/listProduct" element={<ListProduct />}></Route>
             <Route exact path="/updateProduct/:id" element={<UpdateProduct />}></Route>

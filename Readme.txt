@@ -13,6 +13,7 @@ Install Packages:
     -> create-react-app frontend //create react frontend folder
     -> frontend: 
         -> npm i react-router-dom
+        -> Redux toolkit: npm install @reduxjs/toolkit react-redux
 -------------------------------------------------------------------------------------------        
 Command for using in application:
 -------------------------------------------------------------------------------------------
