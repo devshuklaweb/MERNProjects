@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import FValidationSchemaRules from './validationSchema/FValidationSchema';
 
 export default function FValidation() {
-    const onSubmit = () => {
+    const onSubmit = async () => {
         console.log("form submitted");
     }
     //const formik = useFormik({
@@ -105,7 +105,10 @@ export default function FValidation() {
                             <div className="mb-3 row">
                                 <label htmlFor="photo" className="col-sm-4 col-form-label">Photo</label>
                                 <div className="col-sm-8">
-                                    <input type="file" className="form-control" name="photo" onChange={handleChange} onBlur={handleBlur} />
+                                    <input type="file" accept='.pdf' className="form-control" name="photo" onChange={handleChange} onBlur={handleBlur} />
+                                    {errors.photo && touched.photo && (
+                                        <div className="text-start error text-danger">{errors.photo}</div>
+                                    )}
                                 </div>
                             </div>
                             <div className="mb-3 row">
