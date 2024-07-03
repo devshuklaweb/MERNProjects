@@ -11,7 +11,7 @@ import UpdateProduct from './pages/UpdateProduct';
 import Create from './pages/Create';
 import Read from './pages/Read';
 import Edit from './pages/Edit';
-
+import FValidation from './pages/FValidation';
 function App() {
   return (
     <div className="App">
@@ -23,6 +23,7 @@ function App() {
             <Route exact path="/createuser" element={<Create />}></Route>
             <Route exact path="/readuser" element={<Read/>} />
             <Route exact path="/edit/:id" element={<Edit />} />
+            <Route exact path="/validateform" element={<FValidation />}></Route>
             <Route exact path="/addProduct" element={<AddProduct />}></Route>
             <Route exact path="/listProduct" element={<ListProduct />}></Route>
             <Route exact path="/updateProduct/:id" element={<UpdateProduct />}></Route>

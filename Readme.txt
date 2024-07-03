@@ -14,6 +14,9 @@ Install Packages:
     -> frontend: 
         -> npm i react-router-dom
         -> Redux toolkit: npm install @reduxjs/toolkit react-redux
+        -> Validation(Formik + Yup): 
+            -> npm install formik --save
+            -> npm install yup --save
 -------------------------------------------------------------------------------------------        
 Command for using in application:
 -------------------------------------------------------------------------------------------
