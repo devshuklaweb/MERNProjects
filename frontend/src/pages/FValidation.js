@@ -4,11 +4,15 @@ import { useFormik } from 'formik';
 import FValidationSchemaRules from './validationSchema/FValidationSchema';
 
 export default function FValidation() {
-    const onSubmit = async () => {
-        console.log("form submitted");
+    const onSubmit = async (values,actions) => {
+        console.log(values,"values of inputs");
+        console.log(actions);
+        await new Promise((resolve) => setTimeout(resolve,1000));
+        actions.resetForm();
+
     }
     //const formik = useFormik({
-    const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik({
+    const { values, errors, touched, isSubmitting, handleChange, handleBlur, handleSubmit } = useFormik({
         initialValues: {
             name: '',
             age: '',
@@ -26,7 +30,7 @@ export default function FValidation() {
         onSubmit,
     });
     const error = errors.error;
-    console.log(errors, "errors")
+   console.log(errors, "errors")
     return (
         <>
             <div className="container">
@@ -150,7 +154,7 @@ export default function FValidation() {
                                 )}
                             </div>
                             <div style={{ marginBottom: '30px' }}>
-                                <button type="submit" className='btn btn-primary'>Submit</button>
+                                <button disabled={isSubmitting} type="submit" className='btn btn-primary'>Submit</button>
                             </div>
                         </form>
                     </div>
