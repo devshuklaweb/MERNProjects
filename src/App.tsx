@@ -15,9 +15,9 @@ function App() {
         <h1 style={bg}>React Typescript Project</h1>
         <div style={{ color: 'red' }}></div>
         <hr/>
-        <Customer name="Devendra Shukla" prabhu="Shri Ram" />
-        <hr/>
         <User name="Devendra Shukla" designation="Developer" />
+        <hr/>
+        <Customer name="Devendra Shukla" prabhu="Shri Ram" />
         <hr/>
       </header>
     </div>
