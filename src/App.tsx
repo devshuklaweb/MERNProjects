@@ -5,6 +5,7 @@ import Customer from './components/Customer';
 import User from './components/User';
 import Counter from './components/Counter';
 import FunWithParameter from './components/FunWithParameter';
+import FormHandling from './components/FormHandling';
 function App() {
   //internal css
   let bg = {
@@ -24,6 +25,8 @@ function App() {
         <Counter />
         <hr />
         <FunWithParameter/>
+        <hr />
+        <FormHandling/>
         <hr />
       </header>
     </div>
