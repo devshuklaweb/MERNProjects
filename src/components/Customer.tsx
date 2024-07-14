@@ -2,7 +2,8 @@ import React from 'react';
 //create interface for getting props
 interface IPROPS {
     name:String,
-    prabhu:String
+    prabhu:String,
+    age?:Number//? defines that its a optional parameter.
 }
 const Customer: React.FC<IPROPS> = ({name,prabhu}) => {
     return (
