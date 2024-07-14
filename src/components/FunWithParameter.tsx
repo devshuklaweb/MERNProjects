@@ -5,7 +5,11 @@ interface IState {
 const FunWithParameter = () => {
     const [state, setState] = useState<IState>({ message: 'Welcome' });
     const handleAct = (action:string) => {
-        setState({message:action});
+        if(action == 'Default') {
+            setState({message:'Welcome'});
+        } else {
+            setState({message:action});
+        }
     }
     return (
         <>
@@ -16,6 +20,7 @@ const FunWithParameter = () => {
                     <button className="btn-primary btn-sm" onClick={()=>handleAct("Like")}>Like</button>
                     <button className="btn-danger btn-sm" onClick={()=>handleAct("Comment")}>Comment</button>
                     <button className="btn-danger btn-sm" onClick={()=>handleAct("Subscribe")}>Subscribe</button>
+                    <button className="btn-danger btn-sm" onClick={()=>handleAct("Default")}>Default</button>
                 </div>
             </div>
         </>
