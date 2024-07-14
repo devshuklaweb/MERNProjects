@@ -13,7 +13,7 @@ function App() {
       <header className="App-header">
         <h1 style={bg}>React Typescript Project</h1>
         <div style={{color:'red'}}></div>
-        <Customer/>
+        <Customer name="Devendra Shukla" prabhu="Shri Ram" />
       </header>
     </div>
   );
