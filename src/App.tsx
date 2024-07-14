@@ -4,6 +4,7 @@ import './App.css';
 import Customer from './components/Customer';
 import User from './components/User';
 import Counter from './components/Counter';
+import FunWithParameter from './components/FunWithParameter';
 function App() {
   //internal css
   let bg = {
@@ -21,6 +22,8 @@ function App() {
         <Customer name="Devendra Shukla" prabhu="Shri Ram" />
         <hr />
         <Counter />
+        <hr />
+        <FunWithParameter/>
         <hr />
       </header>
     </div>
