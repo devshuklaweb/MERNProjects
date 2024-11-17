@@ -18,7 +18,7 @@ router.get('/',authController.home);
 //     resp.status(200).send("Register route url using auth-router");
 // });
 
-router.get('/register',authController.register);
+router.post('/register',authController.register);
 
 //export rounter
 module.exports = router;

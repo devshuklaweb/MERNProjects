@@ -1,5 +1,5 @@
 
-const home = async (res, resp) => {
+const home = async (req, resp) => {
 
     try {
 
@@ -11,10 +11,12 @@ const home = async (res, resp) => {
 
 }
 
-const register = async (res,resp) => {
+const register = async (req,resp) => {
 
     try {
-        resp.status(200).send("register-auth controller using auth-router");
+        console.log(req.body);
+        //resp.status(200).send("register-auth controller using auth-router");
+        resp.status(200).send({inputs: req.body});
     } catch(error) {
         resp.status(400).send("Error found. "+error);
     }
