@@ -1,13 +1,13 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 //const {home,register} = require("../../controllers/auth-controller")
-const authController = require("../../controllers/auth-controller")
+const authController = require('../../controllers/auth-controller')
 
 // http://localhost:5000/api/auth
 // router.get('/',(req,resp)=> {
 //     resp.status(200).send("Welcome to our website using auth-router");
 // });
-router.get('/',authController.home);
+router.get('/', authController.home)
 
 // http://localhost:5000/api/auth/register
 // router.get('/register',(res,resp)=>{
@@ -18,7 +18,8 @@ router.get('/',authController.home);
 //     resp.status(200).send("Register route url using auth-router");
 // });
 
-router.post('/register',authController.register);
+router.post('/register', authController.register)
+router.post('/login', authController.login)
 
 //export rounter
-module.exports = router;
+module.exports = router

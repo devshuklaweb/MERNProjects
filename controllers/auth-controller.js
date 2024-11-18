@@ -1,5 +1,5 @@
 const User = require('../models/user-model')
-//const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 
 const home = async (req, resp) => {
   try {
@@ -24,7 +24,7 @@ const register = async (req, resp) => {
       password: password
     })
 
-    resp.status(200).send({
+    resp.status(200).json({
       message: userCreated,
       token: await userCreated.generateToken(),
       userId: userCreated._id.toString()
@@ -36,9 +36,32 @@ const register = async (req, resp) => {
     //resp.status(200).send("register-auth controller using auth-router");
     //resp.status(200).send({ inputs: req.body })
   } catch (error) {
-    console.log(error)
+    console.error('Error register token:', error)
     resp.status(200).send({ message: 'Internal server error and error' })
   }
 }
 
-module.exports = { home, register }
+const login = async (req, resp) => {
+  try {
+    const { email, password } = req.body
+    const userExist = await User.findOne({ email: email })
+    if (!userExist) {
+      return resp.status(400).json({ message: 'User email not valid.' })
+    }
+    const isPasswordValid = await bcrypt.compare(password, userExist.password)
+    if (isPasswordValid) {
+      resp.status(200).json({
+        message: 'Login successfully',
+        token: await userExist.generateToken(),
+        userId: userExist._id.toString()
+      })
+    } else {
+      resp.status(401).json({ message: 'Invalid email or password' })
+    }
+  } catch (error) {
+    console.error('Error generating token:', error)
+    resp.status(500).send({ message: 'Internal server error and error' })
+  }
+}
+
+module.exports = { home, register, login }
