@@ -48,8 +48,11 @@ const login = async (req, resp) => {
     if (!userExist) {
       return resp.status(400).json({ message: 'User email not valid.' })
     }
-    const isPasswordValid = await bcrypt.compare(password, userExist.password)
-    if (isPasswordValid) {
+    //move compaire to modal part
+    // const isPasswordValid = await bcrypt.compare(password, userExist.password)
+    const isValidPassword = await userExist.comparePassword(password)
+
+    if (isValidPassword) {
       resp.status(200).json({
         message: 'Login successfully',
         token: await userExist.generateToken(),

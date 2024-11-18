@@ -66,7 +66,16 @@ userSchema.methods.generateToken = async function () {
       }
     )
   } catch (error) {
-    console.log(error)
+    console.log('Error in generateToken', error)
+  }
+}
+
+// checking login password valid or not
+userSchema.methods.comparePassword = async function (password) {
+  try {
+    return bcrypt.compare(password, this.password)
+  } catch (error) {
+    console.log('Error in isPasswordValid', error)
   }
 }
 
