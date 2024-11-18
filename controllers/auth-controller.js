@@ -1,4 +1,5 @@
 const User = require('../models/user-model')
+//const bcrypt = require('bcrypt')
 
 const home = async (req, resp) => {
   try {
@@ -13,8 +14,9 @@ const register = async (req, resp) => {
     const { username, email, phone, password } = req.body
     const userExist = await User.findOne({ email: email })
     if (userExist) {
-      resp.status(400).json({ message: 'User email already exist.' })
+      return resp.status(400).json({ message: 'User email already exist.' })
     }
+
     const userCreated = await User.create({
       username: username,
       email: email,
@@ -27,7 +29,8 @@ const register = async (req, resp) => {
     //resp.status(200).send("register-auth controller using auth-router");
     //resp.status(200).send({ inputs: req.body })
   } catch (error) {
-    resp.status(500).send('Internal server error and error is: ' + error)
+    console.log(error)
+    resp.status(200).send({ message: 'Internal server error and error' })
   }
 }
 
