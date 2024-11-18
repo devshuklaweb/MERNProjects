@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const userSchema = new mongoose.Schema(
   {
@@ -46,6 +47,28 @@ userSchema.pre('save', async function (next) {
   }
   next()
 })
+
+// user define method for generate token after user created.
+userSchema.methods.generateToken = async function () {
+  try {
+    //jwt.sign(payload,secret key)
+    return jwt.sign(
+      //first payload
+      {
+        userId: this._id.toString(),
+        email: this.email,
+        isAdmin: this.isAdmin
+      },
+      process.env.JWT_SECRET_KEY,
+      {
+        //is optional for expirty
+        expiresIn: '30d'
+      }
+    )
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 //define the modal name or collection name
 const User = mongoose.model('User', userSchema) //first collection name in singular form and second is schema

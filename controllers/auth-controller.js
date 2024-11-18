@@ -23,7 +23,14 @@ const register = async (req, resp) => {
       phone: phone,
       password: password
     })
-    resp.status(200).send({ message: userCreated })
+
+    resp.status(200).send({
+      message: userCreated,
+      token: await userCreated.generateToken(),
+      userId: userCreated._id.toString()
+    })
+
+    //userCreated.generateToken() ye ek custom method hai jise ham modal me bana sktain hai kitne bhi.
 
     //console.log(req.body);
     //resp.status(200).send("register-auth controller using auth-router");
