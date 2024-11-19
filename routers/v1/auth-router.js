@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 //const {home,register} = require("../../controllers/auth-controller")
 const authController = require('../../controllers/auth-controller')
+const signupSchema = require('../../validators/auth-validator')
+const validate = require('../../middlewares/validate-middleware')
 
 // http://localhost:5000/api/auth
 // router.get('/',(req,resp)=> {
@@ -18,7 +20,9 @@ router.get('/', authController.home)
 //     resp.status(200).send("Register route url using auth-router");
 // });
 
-router.post('/register', authController.register)
+router.route('/register').post(validate(signupSchema), authController.register)
+//router.route('/register').post(authController.register)
+
 router.post('/login', authController.login)
 
 //export rounter
