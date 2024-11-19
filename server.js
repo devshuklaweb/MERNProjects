@@ -7,13 +7,17 @@ const PORT = process.env.PORT
 app.use(express.json())
 
 //get router file
-const router = require('./routers/v1/auth-router')
+const authRoute = require('./routers/v1/auth-router')
+
+const contactRoute = require('./routers/v1/contact-router')
 
 const connectDB = require('./utils/db')
 const errorMiddleware = require('./middlewares/error-middleware')
 
-app.use('/api/auth/', router) //means jaise hi url me api/auth aayega router chalega.
+app.use('/api/auth/', authRoute) //means jaise hi url me api/auth aayega router chalega.
 //http://localhost:5000/api/auth
+
+app.use('/api/contactform/', contactRoute)
 
 // app.get('/',(req,resp)=> {
 //     resp.status(200).send("Welcome to our website");
