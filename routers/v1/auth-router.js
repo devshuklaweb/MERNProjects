@@ -20,8 +20,11 @@ router.get('/', authController.home)
 //     resp.status(200).send("Register route url using auth-router");
 // });
 
+//without validation
+////router.route('/register').post(authController.register)
+
+//with validation
 router.route('/register').post(validate(signupSchema), authController.register)
-//router.route('/register').post(authController.register)
 
 router.post('/login', authController.login)
 
