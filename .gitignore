@@ -1,0 +1,20 @@
+node_modules/
+/package-lock.json
+
+# dependencies
+/vite-project/node_modules
+/vite-project/.pnp
+.pnp.js
+
+# testing
+/vite-project/coverage
+
+# production
+/vite-project/build
+
+# misc
+/vite-project/.DS_Store
+/vite-project/.env.local
+/vite-project/.env.development.local
+/vite-project/.env.test.local
+/vite-project/.env.production.local
