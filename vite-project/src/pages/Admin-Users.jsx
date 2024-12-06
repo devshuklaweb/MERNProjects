@@ -30,10 +30,10 @@ export const AdminUsers = () => {
             <table style={{ width: '100%' }}>
                 <thead style={{ backgroundColor: '#d4d4d4' }}>
                     <tr>
-                        <th>Service</th>
-                        <th>Price</th>
-                        <th>Provider</th>
-                        <th>Description</th>
+                        <th>Username</th>
+                        <th>Email Address</th>
+                        <th>Phone No</th>
+                        <th>User Type</th>
                         <th>Action</th>
                     </tr>
                 </thead>
