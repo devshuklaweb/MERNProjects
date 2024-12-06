@@ -33,6 +33,8 @@ Install Packages: https://thapatechnical.shop/courses/worlds-best-mern-stack-cou
         -> npm i cors
         -> npm i react-toastify
             https://www.npmjs.com/package/react-toastify
+        -> npm i react-icons
+            https://react-icons.github.io/react-icons/
         --------
         -> Redux toolkit: npm install @reduxjs/toolkit react-redux
         -> Validation(Formik + Yup): 

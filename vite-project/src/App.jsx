@@ -8,7 +8,10 @@ import { Login } from './pages/Login'
 import { Navbar } from './components/Navbar'
 import { Error } from './pages/Error'
 import { Logout } from './pages/Logout'
-
+import { AdminLayout } from "./components/Layouts/Admin-Layout"
+import { AdminUsers } from './pages/Admin-Users'
+import { AdminContacts } from './pages/Admin-Contacts'
+import { AdminServices } from './pages/Admin-Services'
 const App = () => {
   return (
     <>
@@ -23,6 +26,11 @@ const App = () => {
           <Route path='/login' element={<Login />}></Route>
           <Route path='/logout' element={<Logout />}></Route>
           <Route path='*' element={<Error></Error>}></Route>
+          <Route path='/admin' element={<AdminLayout />}>
+            <Route path='users' element={<AdminUsers />}></Route>
+            <Route path='contacts' element={<AdminContacts />}></Route>
+            <Route path='services' element={<AdminServices />}></Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
