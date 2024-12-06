@@ -15,15 +15,45 @@ export const AdminUsers = () => {
                 },
             });
             const data = await response.json();
-            console.log(data, "Admin User Data");
+            //console.log(data, "Admin User Data");
             SetList(data);
         } catch(error) {
             toast.error(error);
         }
     };
+
+    const deleteRecord = async (id) => {
+        const isConfirmed = window.confirm("Are you sure you want to delete this record?");
+        if (isConfirmed) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/admin/users/delete/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: authorizationToken
+                    },
+                });
+                const responseData = await response.json();
+                if (response.ok) {
+                    toast.success(responseData.extraDetails ? responseData.extraDetails : responseData.message);
+                    getAllUsers();
+                } else {
+                    toast.error('User not delete. Try again');
+                }
+            } catch (error) {
+                toast.error(error);
+            }
+        }
+    }
+
+    const editRecord = (id) => {
+        console.log("editRecord ", id);
+    }
+
     useEffect(() => {
         getAllUsers();
     }, []);
+    
     return (
         <>
             <h1>AdminUsers Listing</h1>
@@ -47,8 +77,8 @@ export const AdminUsers = () => {
                                 <td>{element.phone}</td>
                                 <td>{element.isAdmin ? 'Admin User' : 'User'}</td>
                                 <td>
-                                    <button type="button">Edit</button> &nbsp;
-                                      <button type="button">Delete</button>
+                                    <button type="button" onClick={() => editRecord(element._id)}>Edit</button> &nbsp;
+                                    <button type="button" onClick={() => deleteRecord(element._id)}>Delete</button>
                                 </td>
                             </tr>
                         )

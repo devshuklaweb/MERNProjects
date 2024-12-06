@@ -15,6 +15,19 @@ const getAllUsers = async (req, resp) => {
         //resp.status(500).send({ message: 'Internal server error and error' })
     }
 };
+
+const deleteUserById = async (req, resp) => {
+
+    try {
+        const id = req.params.id;
+        const response = await UserModel.deleteOne({ _id: id });
+        return resp.status(200).json({ message: 'User deleted successfully.' });
+        
+    } catch (error) {
+        next(error);
+    }
+};
+
 const getAllContacts = async (req, resp) => {
 
     try {
@@ -41,4 +54,4 @@ const getAllServices = async (req, resp) => {
     }
 };
 
-module.exports = { getAllUsers, getAllContacts, getAllServices };
+module.exports = { getAllUsers, deleteUserById, getAllContacts, getAllServices };

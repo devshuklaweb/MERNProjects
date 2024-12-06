@@ -35,6 +35,10 @@ Install Packages: https://thapatechnical.shop/courses/worlds-best-mern-stack-cou
             https://www.npmjs.com/package/react-toastify
         -> npm i react-icons
             https://react-icons.github.io/react-icons/
+        -> npm i react-bootstrap
+            https://www.npmjs.com/package/react-bootstrap
+            https://react-bootstrap.github.io/docs/getting-started/introduction
+            https://react-bootstrap.netlify.app/docs/getting-started/introduction
         --------
         -> Redux toolkit: npm install @reduxjs/toolkit react-redux
         -> Validation(Formik + Yup): 
