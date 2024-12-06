@@ -26,6 +26,34 @@ export const AdminContacts = () => {
         getAllContacts();
     }, []);
 
+    const deleteRecord = async (id) => {
+        const isConfirmed = window.confirm("Are you sure you want to delete this record?");
+        if (isConfirmed) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/admin/contacts/delete/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: authorizationToken
+                    },
+                });
+                const responseData = await response.json();
+                if (response.ok) {
+                    toast.success(responseData.extraDetails ? responseData.extraDetails : responseData.message);
+                    getAllContacts();
+                } else {
+                    toast.error('Contact not delete. Try again');
+                }
+            } catch (error) {
+                toast.error(error);
+            }
+        }
+    }
+
+    const editRecord = (id) => {
+        console.log("editRecord ", id);
+    }
+
     return (
         <>
             <h1>AdminContacts Page</h1>
@@ -47,8 +75,8 @@ export const AdminContacts = () => {
                                 <td>{element.email}</td>
                                 <td>{element.message}</td>
                                 <td>
-                                    <button type="button">Edit</button> &nbsp;
-                                    <button type="button">Delete</button>
+                                    <button type="button" onClick={() => editRecord(element._id)}>Edit</button> &nbsp;
+                                    <button type="button" onClick={() => deleteRecord(element._id)}>Delete</button>
                                 </td>
                             </tr>
                         )

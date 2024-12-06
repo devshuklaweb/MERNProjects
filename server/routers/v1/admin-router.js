@@ -10,7 +10,9 @@ router.route("/users/delete/:id").delete(authMiddleware, adminMiddleware, adminC
 
 
 router.route("/contacts").get(authMiddleware, adminController.getAllContacts);
+router.route("/contacts/delete/:id").delete(authMiddleware, adminMiddleware, adminController.deleteContactById);
 
 router.route("/services").get(authMiddleware, adminController.getAllServices);
+router.route("/services/delete/:id").delete(authMiddleware, adminMiddleware, adminController.deleteServiceById);
 
 module.exports = router;
