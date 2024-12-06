@@ -7,6 +7,8 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [user, setUser] = useState("");
     const [servicesData, setServicesData] = useState("");
+    const authorizationToken = `Bearer ${token}`;
+
     //function to stored the token in local storage
     const storeTokenInLS = (serverToken) => {
         setToken(serverToken);
@@ -76,7 +78,7 @@ export const AuthProvider = ({ children }) => {
     }, []);//run only first time
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user, servicesData }}>
+        <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user, servicesData, authorizationToken }}>
             {children}
         </AuthContext.Provider>
     );
