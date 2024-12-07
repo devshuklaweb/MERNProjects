@@ -10,10 +10,10 @@ router.route("/users/delete/:id").delete(authMiddleware, adminMiddleware, adminC
 router.route("/users/:id").get(authMiddleware, adminMiddleware, adminController.getUserById);
 router.route("/users/update/:id").patch(authMiddleware, adminMiddleware, adminController.updateUserById);
 
-router.route("/contacts").get(authMiddleware, adminController.getAllContacts);
+router.route("/contacts").get(authMiddleware, adminMiddleware, adminController.getAllContacts);
 router.route("/contacts/delete/:id").delete(authMiddleware, adminMiddleware, adminController.deleteContactById);
 
-router.route("/services").get(authMiddleware, adminController.getAllServices);
+router.route("/services").get(authMiddleware, adminMiddleware, adminController.getAllServices);
 router.route("/services/delete/:id").delete(authMiddleware, adminMiddleware, adminController.deleteServiceById);
 
 module.exports = router;

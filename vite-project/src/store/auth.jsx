@@ -6,6 +6,7 @@ export const AuthProvider = ({ children }) => {
 
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [user, setUser] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
     const [servicesData, setServicesData] = useState("");
     const authorizationToken = `Bearer ${token}`;
 
@@ -17,8 +18,6 @@ export const AuthProvider = ({ children }) => {
 
     // this is the get the value in either true or false in the original state of token
     let isLoggedIn = !!token;
-    console.log("token", token);
-    console.log("isLoggedin ", isLoggedIn);
 
     // to check whether is loggedIn or not
     const LogoutUser = () => {
@@ -39,9 +38,11 @@ export const AuthProvider = ({ children }) => {
 
             if (response.ok) {
                 const data = await response.json();
-                setUser(data.userData[0]);
-                console.log('user data', data.userData[0]);
+                setUser(data.userData);
+                console.log('user data', data.userData);
+                setIsLoading(false);
             } else {
+                setIsLoading(false);
                 console.error('Error fetching userData',response);
             }
         } catch (error) {
@@ -78,7 +79,7 @@ export const AuthProvider = ({ children }) => {
     }, []);//run only first time
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user, servicesData, authorizationToken }}>
+        <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, user, servicesData, authorizationToken, isLoading }}>
             {children}
         </AuthContext.Provider>
     );

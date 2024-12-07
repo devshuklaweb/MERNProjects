@@ -15,12 +15,14 @@ export const AdminContacts = () => {
                 },
             });
             const data = await response.json();
-            console.log(data, "Admin Contacts Data");
-            SetList(data);
+            if (data.message) {
+                toast.error(data.message);
+            } else {
+                SetList(data);
+            }
         } catch (error) {
             toast.error(error);
         }
-
     };
     useEffect(() => {
         getAllContacts();
