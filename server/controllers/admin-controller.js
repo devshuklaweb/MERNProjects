@@ -16,6 +16,36 @@ const getAllUsers = async (req, resp) => {
     }
 };
 
+const getUserById = async (req, resp) => {
+
+    try {
+        const id = req.params.id;
+        const data = await UserModel.findOne({ _id: id }, { password: 0 });
+        console.log(data, "Edit Data");
+        return resp.status(200).json(data);
+
+    } catch (error) {
+        next(error);
+    }
+};
+
+const updateUserById = async (req, resp) => {
+
+    try {
+        const id = req.params.id;
+        const updateData = req.body;
+        console.log(updateData, 'updateData');
+        const updatedData = await UserModel.updateOne({ _id: id }, {
+            $set: updateData
+        });
+        console.log(updatedData, "updateUserById Data");
+        return resp.status(200).json(updatedData);
+
+    } catch (error) {
+        next(error);
+    }
+};
+
 const deleteUserById = async (req, resp) => {
 
     try {
@@ -78,4 +108,4 @@ const deleteServiceById = async (req, resp) => {
     }
 };
 
-module.exports = { getAllUsers, deleteUserById, getAllContacts, deleteContactById, getAllServices, deleteServiceById };
+module.exports = { getAllUsers, getUserById, updateUserById, deleteUserById, getAllContacts, deleteContactById, getAllServices, deleteServiceById };

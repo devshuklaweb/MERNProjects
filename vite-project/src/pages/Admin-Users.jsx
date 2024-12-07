@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth"
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
+
 export const AdminUsers = () => {
     const [list, SetList] = useState([]);
     const { authorizationToken } = useAuth();
@@ -46,10 +48,6 @@ export const AdminUsers = () => {
         }
     }
 
-    const editRecord = (id) => {
-        console.log("editRecord ", id);
-    }
-
     useEffect(() => {
         getAllUsers();
     }, []);
@@ -77,7 +75,7 @@ export const AdminUsers = () => {
                                 <td>{element.phone}</td>
                                 <td>{element.isAdmin ? 'Admin User' : 'User'}</td>
                                 <td>
-                                    <button type="button" onClick={() => editRecord(element._id)}>Edit</button> &nbsp;
+                                    <Link to={`/admin/users/${element._id}/edit`}>Edit</Link> &nbsp;
                                     <button type="button" onClick={() => deleteRecord(element._id)}>Delete</button>
                                 </td>
                             </tr>
