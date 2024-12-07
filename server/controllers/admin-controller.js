@@ -32,13 +32,14 @@ const getUserById = async (req, resp) => {
 const updateUserById = async (req, resp) => {
 
     try {
+
         const id = req.params.id;
         const updateData = req.body;
-        console.log(updateData, 'updateData');
+        //console.log(updateData, 'updateData-updateUserById');
         const updatedData = await UserModel.updateOne({ _id: id }, {
             $set: updateData
         });
-        console.log(updatedData, "updateUserById Data");
+        //console.log(updatedData, "updateUserById Data");
         return resp.status(200).json(updatedData);
 
     } catch (error) {

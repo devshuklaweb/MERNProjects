@@ -12,6 +12,8 @@ import { AdminLayout } from "./components/Layouts/Admin-Layout"
 import { AdminUsers } from './pages/Admin-Users'
 import { AdminContacts } from './pages/Admin-Contacts'
 import { AdminServices } from './pages/Admin-Services'
+import { AdminUpdateuser } from './pages/Admin-Updateuser'
+
 const App = () => {
   return (
     <>
@@ -28,6 +30,7 @@ const App = () => {
           <Route path='*' element={<Error></Error>}></Route>
           <Route path='/admin' element={<AdminLayout />}>
             <Route path='users' element={<AdminUsers />}></Route>
+            <Route path='users/:id/edit' element={<AdminUpdateuser />}></Route>
             <Route path='contacts' element={<AdminContacts />}></Route>
             <Route path='services' element={<AdminServices />}></Route>
           </Route>

@@ -17,8 +17,11 @@ export const AdminUsers = () => {
                 },
             });
             const data = await response.json();
-            //console.log(data, "Admin User Data");
-            SetList(data);
+            if (data.message) {
+                toast.error(data.message);
+            } else {
+                SetList(data);
+            }
         } catch(error) {
             toast.error(error);
         }
