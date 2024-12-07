@@ -35,6 +35,9 @@ export const Navbar = () => {
                   ?
                   <>
                     <li>
+                      <NavLink to='/admin/users'> Admin User </NavLink>
+                    </li>
+                    <li>
                       <NavLink to='/logout'> Logout </NavLink>
                     </li>
                   </>
