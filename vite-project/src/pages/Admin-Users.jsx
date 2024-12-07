@@ -70,7 +70,7 @@ export const AdminUsers = () => {
                 </thead>
                 <tbody>
 
-                    {Array.isArray(list) && list.map((element, index) => {
+                    {list.map((element, index) => {
                         return (
                             <tr key={index}>
                                 <td>{element.username}</td>
