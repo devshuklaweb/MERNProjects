@@ -39,6 +39,8 @@ Install Packages: https://thapatechnical.shop/courses/worlds-best-mern-stack-cou
             https://www.npmjs.com/package/react-bootstrap
             https://react-bootstrap.github.io/docs/getting-started/introduction
             https://react-bootstrap.netlify.app/docs/getting-started/introduction
+        -> for upload live:
+            https://www.youtube.com/watch?v=oUBUTFL8ygE
         --------
         -> Redux toolkit: npm install @reduxjs/toolkit react-redux
         -> Validation(Formik + Yup): 
