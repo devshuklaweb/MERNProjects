@@ -62,14 +62,18 @@ const deleteUserById = async (req, resp) => {
 const getAllContacts = async (req, resp) => {
 
     try {
+        /*
         const response = await contactModel.find();
         if (!response || response.length === 0) {
             resp.status(404).send({ message: 'Contact not found!' })
         }
+        */
+        const response = await contactModel.find().populate('user'); // Example query with population
         return resp.status(200).json(response);
-    } catch (error) {
-        next(error);
-    }
+    } catch (err) {
+        console.error(err);
+        return resp.status(400).json(err);
+    } 
 }; 
 
 const deleteContactById = async (req, resp) => {
