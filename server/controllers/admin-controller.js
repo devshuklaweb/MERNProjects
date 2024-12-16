@@ -76,6 +76,37 @@ const getAllContacts = async (req, resp) => {
     } 
 }; 
 
+const getContactsWithUserUsingLookup = async (req, resp) => {
+    try {
+        const contacts = await contactModel.aggregate([
+            {
+                $lookup: {
+                    from: 'users', // The name of the collection you want to join with (in lowercase)
+                    localField: 'user', // The field in the Contact model that references the User
+                    foreignField: '_id', // The field in the User model that the 'user' field in Contact references
+                    as: 'userDetails' // The alias for the result of the join
+                }
+            },
+            {
+                $unwind: '$userDetails' // Unwind the array created by $lookup (to get a single user object)
+            },
+            {
+                $project: {
+                    username: 1, // The fields you want to include from the Contact model
+                    email: 1,
+                    message: 1,
+                    'userDetails.username': 1, // Include the relevant fields from the User model
+                    'userDetails.email': 1,
+                }
+            }
+        ]);
+        return resp.status(200).json(contacts);
+    } catch (error) {
+        console.error('Error fetching contacts using lookup:', error);
+        return resp.status(400).json(error);
+    }
+};
+
 const deleteContactById = async (req, resp) => {
 
     try {
@@ -113,4 +144,4 @@ const deleteServiceById = async (req, resp) => {
     }
 };
 
-module.exports = { getAllUsers, getUserById, updateUserById, deleteUserById, getAllContacts, deleteContactById, getAllServices, deleteServiceById };
+module.exports = { getAllUsers, getUserById, updateUserById, deleteUserById, getAllContacts, deleteContactById, getAllServices, deleteServiceById, getContactsWithUserUsingLookup };

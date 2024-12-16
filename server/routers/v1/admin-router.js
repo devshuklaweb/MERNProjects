@@ -11,6 +11,7 @@ router.route("/users/:id").get(authMiddleware, adminMiddleware, adminController.
 router.route("/users/update/:id").patch(authMiddleware, adminMiddleware, adminController.updateUserById);
 
 router.route("/contacts").get(authMiddleware, adminMiddleware, adminController.getAllContacts);
+router.route("/contacts/withlookup").get(authMiddleware, adminMiddleware, adminController.getContactsWithUserUsingLookup);
 router.route("/contacts/delete/:id").delete(authMiddleware, adminMiddleware, adminController.deleteContactById);
 
 router.route("/services").get(authMiddleware, adminMiddleware, adminController.getAllServices);
