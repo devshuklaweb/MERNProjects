@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Customer from './components/Customer'
+import Classprops from './components/Classprops'
 function App() {
   const [count, setCount] = useState(0)
   const bg = {
@@ -27,8 +28,13 @@ function App() {
           </div>
       </div>
       <div className="container">
-        <div className="col">
-          <Customer name="Dev" address="Rajapur" age={22} />
+        <div className="row">
+          <div className="col p-3">
+            <Customer name="Dev" address="Rajapur" age={22} />
+          </div>
+          <div className="col p-3">
+            <Classprops name="Devendra" address="civil Lines" />
+          </div>
         </div>
       </div>
     </>
