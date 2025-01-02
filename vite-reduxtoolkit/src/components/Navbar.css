@@ -1,0 +1,40 @@
+.container {
+  max-width: 100rem;
+  padding: 4.2rem 2.4 rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo-brand {
+  padding: 14px 16px;
+  font-size: 20px;
+}
+ul {
+  /* display: flex;
+  gap: 3.2 rem; */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04aa6d;
+}
