@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 interface IState {
     count: number;
 }
-const Customer: React.FC = () => {
+const FunCounter: React.FC = () => {
     const [state, setState] = useState<IState>({
         count: 0
     });
@@ -37,4 +37,4 @@ const Customer: React.FC = () => {
     );
 };
 
-export default Customer;
+export default FunCounter;

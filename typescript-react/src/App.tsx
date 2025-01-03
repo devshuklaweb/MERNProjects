@@ -5,6 +5,7 @@ import './App.css'
 import Customer from './components/Customer'
 import Classprops from './components/Classprops'
 import FunCounter from './components/FunCounter'
+import FunArgu from './components/FunArgu'
 function App() {
   const [count, setCount] = useState(0)
   const bg = {
@@ -40,6 +41,9 @@ function App() {
         <div className="row">
           <div className="col">
             <FunCounter/>
+          </div>
+          <div className="col">
+            <FunArgu />
           </div>
         </div>
       </div>
