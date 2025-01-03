@@ -7,10 +7,18 @@ const Customer: React.FC = () => {
         count: 0
     });
     const handleInc = () => {
-        setState({ count: state.count + 1});
+        if (state.count < 10) {
+            setState({ count: state.count + 1 });
+        } else {
+            alert("Maximum increment less than equal to 10")
+        }
     }
     const handleDec = () => {
-        setState({ count: state.count - 1 });
+        if (state.count > 0) {
+            setState({ count: state.count - 1 });
+        } else {
+            alert("Minimum decrement greater than equal to 0")
+        }
     }
 
     return (
