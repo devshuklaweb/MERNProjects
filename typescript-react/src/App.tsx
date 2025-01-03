@@ -7,6 +7,7 @@ import Classprops from './components/Classprops'
 import FunCounter from './components/FunCounter'
 import FunArgu from './components/FunArgu'
 import FormHandling from './components/FormHandling'
+import AuthLogin from './components/AuthLogin'
 function App() {
   const [count, setCount] = useState(0)
   const bg = {
@@ -50,6 +51,9 @@ function App() {
         <div className="row">
           <div className="col">
             <FormHandling />
+          </div>
+          <div className="col">
+            <AuthLogin />
           </div>
         </div>
       </div>
