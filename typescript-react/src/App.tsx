@@ -8,6 +8,7 @@ import FunCounter from './components/FunCounter'
 import FunArgu from './components/FunArgu'
 import FormHandling from './components/FormHandling'
 import AuthLogin from './components/AuthLogin'
+import Looping from './components/Looping'
 function App() {
   const [count, setCount] = useState(0)
   const bg = {
@@ -52,6 +53,11 @@ function App() {
           <div className="col">
             <FormHandling />
           </div>
+          <div className="col">
+            <Looping />
+          </div>
+        </div>
+        <div className="row">
           <div className="col">
             <AuthLogin />
           </div>
