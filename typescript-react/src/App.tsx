@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Customer from './components/Customer'
 import Classprops from './components/Classprops'
+import FunCounter from './components/FunCounter'
 function App() {
   const [count, setCount] = useState(0)
   const bg = {
@@ -34,6 +35,11 @@ function App() {
           </div>
           <div className="col p-3">
             <Classprops name="Devendra" address="civil Lines" />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <FunCounter/>
           </div>
         </div>
       </div>

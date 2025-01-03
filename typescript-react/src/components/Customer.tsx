@@ -17,7 +17,7 @@ const Customer: React.FC<IPROPS> = ({ name, address, age }) => {
         <>
             <div className='card m-2'>
                 <div className="card-body">
-                    <h5 className="card-title">Class Components Props In React Typescript</h5>
+                    <h5 className="card-title">Functional Components Props In React Typescript</h5>
                     <div>Name: {name}</div>
                     <div>Address: {address}</div>
                     {age && <div>Age: {age ?? 0}</div>}
@@ -25,7 +25,7 @@ const Customer: React.FC<IPROPS> = ({ name, address, age }) => {
             </div>
             <div className='card m-2'>
                 <div className="card-body">
-                    <h5 className="card-title">Handling State Class Component with react typescript</h5>
+                    <h5 className="card-title">Handling State Functional Component with react typescript</h5>
                     <div>Name: {state.name}</div>
                     <div>Email: {state.email}</div>
                 </div>
