@@ -29,6 +29,7 @@ const AuthLogin: React.FC = () => {
                             <button onClick={handleLogin}>Login</button>
                         </div> 
                     )}
+                    <div style={{height:'135px'}}>&nbsp;</div>
                 </div>
             </div>
         </>

@@ -9,6 +9,7 @@ import FunArgu from './components/FunArgu'
 import FormHandling from './components/FormHandling'
 import AuthLogin from './components/AuthLogin'
 import Looping from './components/Looping'
+import UsingServiceUserList from './components/UsingServiceUserList'
 function App() {
   const [count, setCount] = useState(0)
   const bg = {
@@ -60,6 +61,9 @@ function App() {
         <div className="row">
           <div className="col">
             <AuthLogin />
+          </div>
+          <div className="col">
+            <UsingServiceUserList />
           </div>
         </div>
       </div>
