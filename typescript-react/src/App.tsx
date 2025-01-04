@@ -10,6 +10,7 @@ import FormHandling from './components/FormHandling'
 import AuthLogin from './components/AuthLogin'
 import Looping from './components/Looping'
 import UsingServiceUserList from './components/UsingServiceUserList'
+import UserApi from './components/fetchApi/UserApi'
 function App() {
   const [count, setCount] = useState(0)
   const bg = {
@@ -66,6 +67,12 @@ function App() {
             <UsingServiceUserList />
           </div>
         </div>
+        <div className="row">
+          <div className="col">
+            <UserApi />
+          </div>
+        </div>
+
       </div>
     </>
   )
