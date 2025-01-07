@@ -9,30 +9,32 @@ interface IParams {
 }
 interface IState {
     loading: boolean,
-    users: IUsers[],
+    user: IUsers,
     errorMsg:string
 }
 const UserDetails: React.FC = () => {
     const { id } = useParams<IParams | any>();
     const [state, setState] = useState < IState > ({
         loading: false,
-        users: [] as IUsers[],
+        user: {} as IUsers,
         errorMsg:''
     });
 
     useEffect(() => {
-        setState({ ...state, loading: true });
-        UserFetchApiServices.getAllUser()
-            .then((res) => setState({
-                ...state, loading: false, users: res.data as IUsers[]  // Add type assertion here
-                //...state, loading: false, users:res.data
-            }))
-            .catch((error) => setState({
-                ...state, loading: false, errorMsg: error.message
-            }));
-        //eslint-disable-next-line
-    }, []);
-    const { loading, users, errorMsg } = state;
+        if (id) {
+            setState({ ...state, loading: true });
+            UserFetchApiServices.getUser(id)
+                .then((res) => setState({
+                    ...state, loading: false, user: res.data as IUsers[]  // Add type assertion here
+                    //...state, loading: false, user:res.data
+                }))
+                .catch((error) => setState({
+                    ...state, loading: false, errorMsg: error.message
+                }));
+            //eslint-disable-next-line
+        }
+    }, [id]);
+    const { loading, user, errorMsg } = state;
     return (
         <>
             <div className='card m-2'>
@@ -43,6 +45,20 @@ const UserDetails: React.FC = () => {
                         {errorMsg && (<p>{errorMsg}</p>)}
                         {loading && (<p>Loading...</p>)}
                         
+                            {user && (
+                                <ul className='list-group'>
+                                    <li className="list-group-item">
+                                        <strong>Name: </strong>{user.name}
+                                    </li>
+                                    <li className="list-group-item">
+                                        <strong>User Name: </strong>{user.username}
+                                    </li>
+                                    <li className="list-group-item">
+                                        <strong>Email: </strong>{user.email}
+                                    </li>
+                                </ul>
+                            )}
+
                         <div>
                             <Link className="btn btn-primary" to={'/FetchApi'}>Go Back</Link>
                         </div>

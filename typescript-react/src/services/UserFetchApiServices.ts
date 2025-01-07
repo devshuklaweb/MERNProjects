@@ -9,4 +9,9 @@ export class UserFetchApiServices {
         return axios.get(UserURL); //npm i axios @types/axios
     }
 
+    public static getUser(userId: number) {
+        let UserURL: string = `${this.URL}/users/${userId}`;
+        return axios.get(UserURL);
+    }
+
 } 
