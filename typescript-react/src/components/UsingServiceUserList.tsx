@@ -5,7 +5,7 @@ interface IState {
     user: UserList[];
 }
 const UsingServiceUserList: React.FC = () => {
-    const [state, setState] = useState < IState > ({
+    const [state] = useState < IState > ({
         user: UserService.getAllUser(),
     });
     return (

@@ -4,7 +4,7 @@ interface IState {
     user: UserList[];
 }
 const Looping: React.FC = () => {
-    const [state, setState] = useState < IState > ({
+    const [state] = useState < IState > ({
         user: [
             { sno: 1, name: "Devendra", age:22},
             { sno: 2, name: "Devendra2", age: 22},

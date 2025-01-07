@@ -23,13 +23,16 @@ const UserDetails: React.FC = () => {
     useEffect(() => {
         if (id) {
             setState({ ...state, loading: true });
-            UserFetchApiServices.getUser(id)
+            UserFetchApiServices.getUser(Number(id))
                 .then((res) => setState({
-                    ...state, loading: false, user: res.data as IUsers[]  // Add type assertion here
-                    //...state, loading: false, user:res.data
+                    ...state,
+                    loading: false,
+                    user: res.data as IUsers  // Add type assertion here
                 }))
                 .catch((error) => setState({
-                    ...state, loading: false, errorMsg: error.message
+                    ...state,
+                    loading: false,
+                    errorMsg: error.message
                 }));
             //eslint-disable-next-line
         }
@@ -60,7 +63,7 @@ const UserDetails: React.FC = () => {
                             )}
 
                         <div>
-                            <Link className="btn btn-primary" to={'/FetchApi'}>Go Back</Link>
+                            <Link className="btn btn-primary m-3" to={'/FetchApi'}>Go Back</Link>
                         </div>
                     </div>
                 </div>

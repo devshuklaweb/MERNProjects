@@ -9,7 +9,7 @@ interface IState {
     email: String;
 }
 const Customer: React.FC<IPROPS> = ({ name, address, age }) => {
-    const [state, setState] = useState<IState>({
+    const [state] = useState<IState>({
         name: 'Shri Ram',
         email: 'dev@gmail.com',
     })
