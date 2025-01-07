@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { IUsers } from '../../Model/IUsers';
 import { UserFetchApiServices } from '../../services/UserFetchApiServices';
+import { Link } from 'react-router-dom';
 interface IState {
     loading: boolean,
     users: IUsers[],
     errorMsg:string
 }
 const UsingServiceUserList: React.FC = () => {
+
     const [state, setState] = useState < IState > ({
         loading: false,
         users: [] as IUsers[],
@@ -47,7 +49,8 @@ const UsingServiceUserList: React.FC = () => {
                                 {users.length > 0 && users.map((item, key) => (
                                     <tr key={key}>
                                         <th scope="row">{item.id}</th>
-                                        <td>{item.name}</td>
+                                        <td>
+                                            <Link to={`../user_details/${item.id}`} className='text-decoration-none'>{item.name}</Link></td>
                                         <td>{item.username}</td>
                                         <td>{item.email}</td>
                                     </tr>

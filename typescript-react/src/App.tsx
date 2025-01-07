@@ -11,6 +11,7 @@ import UserApi from './components/fetchApi/UserApi'
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home'
 import Navbar from './components/Navbar'
+import UserDetails from './components/fetchApi/UserDetails'
 function App() {
   
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/Looping' element={<Looping />} />
         <Route path='/services' element={<UsingServiceUserList />} />
         <Route path='/FetchApi' element={<UserApi />} />
+        <Route path='/user_details/:id' element={<UserDetails />} />
       </Routes>
     </>
   )
